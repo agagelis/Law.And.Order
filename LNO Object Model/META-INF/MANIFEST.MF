@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LNO Object Model
+Bundle-SymbolicName: LNO.Object.Model;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: lno.object.model.Activator
+Bundle-Vendor: Papadakis_Aggelis
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy

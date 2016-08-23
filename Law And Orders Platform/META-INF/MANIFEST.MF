@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Law And Orders Platform
+Bundle-SymbolicName: Law.And.Orders.Platform;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: law.and.orders.platform.activator.Activator
+Bundle-Vendor: Papadakis_Aggelis
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
