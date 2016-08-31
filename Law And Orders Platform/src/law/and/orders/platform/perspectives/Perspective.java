@@ -1,4 +1,4 @@
-package law.and.orders.platform.perspective;
+package law.and.orders.platform.perspectives;
 
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;

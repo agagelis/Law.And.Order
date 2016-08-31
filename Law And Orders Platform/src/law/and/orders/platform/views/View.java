@@ -1,4 +1,4 @@
-package law.and.orders.platform;
+package law.and.orders.platform.views;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;

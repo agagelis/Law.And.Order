@@ -1,4 +1,4 @@
-package law.and.orders.platform.perspective;
+package law.and.orders.platform.perspectives;
 
 import java.util.HashMap;
 import java.util.Map;
