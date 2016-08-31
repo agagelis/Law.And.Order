@@ -18,6 +18,11 @@
             class="law.and.orders.platform.perspectives.Perspective"
             id="Law.And.Orders.Platform.perspective">
       </perspective>
+      <perspective
+            class="law.and.orders.platform.perspectives.SecondaryPerspective"
+            id="Law And Orders Platform.perspective2"
+            name="Second">
+      </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
@@ -26,17 +31,32 @@
             class="law.and.orders.platform.views.View"
             id="Law.And.Orders.Platform.view">
       </view>
+      <view
+            class="law.and.orders.platform.views.SecondView"
+            id="Law And Orders Platform.view1"
+            name="SecondView"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="*">
+            targetID="Law.And.Orders.Platform.perspective">
          <view
                standalone="true"
                minimized="false"
                relative="org.eclipse.ui.editorss"
-               relationship="left"
+               relationship="stack"
                id="Law.And.Orders.Platform.view">
+         </view>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="Law And Orders Platform.perspective2">
+         <view
+               id="Law And Orders Platform.view1"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.editorss">
          </view>
       </perspectiveExtension>
    </extension>
