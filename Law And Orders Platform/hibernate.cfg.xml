@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    
+    	<!--Database connection settings-->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql:dblaw</property>
+        <property name="hibernate.connection.password">12345</property>
+        <property name="hibernate.connection.username">postgres</property>
+        
+        <!--SQL Dialect-->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    	
+    	<!--Echo all executed SQL to sdtout-->
+    	<property name="show_sql">true</property>
+		
+		<!--Database schema on startup-->
+		<property name="hbm2ddl.auto">validate</property>
+    	
+    	<property name="format_sql">true</property>
+    	<property name="hibernate.current_session_context_class">thread</property>
+		<property name="connection.pool_size">1</property>
+    	
+    	<mapping class="domain.User" />
+    	<mapping class="domain.Customer" />
+    	<mapping class="domain.Case" />
+    	<mapping class="domain.DataLaw" />
+
+    </session-factory>
+</hibernate-configuration>
