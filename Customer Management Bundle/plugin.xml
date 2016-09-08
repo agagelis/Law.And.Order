@@ -18,6 +18,11 @@
             id="customer.management.bundle.views.CasesView"
             name="Cases">
       </view>
+      <view
+            class="customer.management.bundle.views.CustomerInformationView"
+            id="customer.management.bundle.views.CustomerInformationView"
+            name="Customer Information">
+      </view>
    </extension>
    <extension
          point="org.eclipse.help.contexts">
@@ -40,6 +45,12 @@
             targetID="customer.management.bundle.perspectives.customermanagement">
          <view
                id="customer.management.bundle.views.CustomersView"
+               minimized="false"
+               relationship="left"
+               relative="org.eclipse.ui.editorss">
+         </view>
+         <view
+               id="customer.management.bundle.views.CustomerInformationView"
                minimized="false"
                relationship="stack"
                relative="org.eclipse.ui.editorss">
