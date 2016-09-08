@@ -23,6 +23,11 @@
             id="Law And Orders Platform.perspective2"
             name="Second">
       </perspective>
+      <perspective
+            class="law.and.orders.platform.perspectives.FileManagementPerspective"
+            id="law.and.orders.platform.perspectives.FileManagementPerspective"
+            name="File Management">
+      </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
