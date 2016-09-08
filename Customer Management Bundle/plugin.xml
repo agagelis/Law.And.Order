@@ -13,6 +13,11 @@
             id="customer.management.bundle.views.CustomersView"
             name="Customers">
       </view>
+      <view
+            class="customer.management.bundle.views.CasesView"
+            id="customer.management.bundle.views.CasesView"
+            name="Cases">
+      </view>
    </extension>
    <extension
          point="org.eclipse.help.contexts">
@@ -24,9 +29,21 @@
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
             targetID="customer.management.bundle.perspectives.casemanagement">
+         <view
+               id="customer.management.bundle.views.CasesView"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.editorss">
+         </view>
       </perspectiveExtension>
       <perspectiveExtension
             targetID="customer.management.bundle.perspectives.customermanagement">
+         <view
+               id="customer.management.bundle.views.CustomersView"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.editorss">
+         </view>
       </perspectiveExtension>
    </extension>
    <extension
