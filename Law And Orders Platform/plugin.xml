@@ -14,17 +14,8 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="Perspective"
-            class="law.and.orders.platform.perspectives.Perspective"
-            id="Law.And.Orders.Platform.perspective">
-      </perspective>
-      <perspective
-            class="law.and.orders.platform.perspectives.SecondaryPerspective"
-            id="Law And Orders Platform.perspective2"
-            name="Second">
-      </perspective>
-      <perspective
             class="law.and.orders.platform.perspectives.FileManagementPerspective"
+            icon="icons/perspectives/file_24.png"
             id="law.and.orders.platform.perspectives.FileManagementPerspective"
             name="File Management">
       </perspective>
@@ -46,22 +37,13 @@
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="Law.And.Orders.Platform.perspective">
+            targetID="law.and.orders.platform.perspectives.FileManagementPerspective">
          <view
                standalone="true"
                minimized="false"
                relative="org.eclipse.ui.editorss"
                relationship="stack"
                id="Law.And.Orders.Platform.view">
-         </view>
-      </perspectiveExtension>
-      <perspectiveExtension
-            targetID="Law And Orders Platform.perspective2">
-         <view
-               id="Law And Orders Platform.view1"
-               minimized="false"
-               relationship="stack"
-               relative="org.eclipse.ui.editorss">
          </view>
       </perspectiveExtension>
    </extension>

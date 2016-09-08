@@ -11,6 +11,7 @@ public class FileManagementPerspective implements IPerspectiveFactory {
 	public void createInitialLayout(IPageLayout layout) {
 		String editorArea = layout.getEditorArea();
 		addFastViews(layout);
+		layout.setEditorAreaVisible(false);
 		addViewShortcuts(layout);
 		addPerspectiveShortcuts(layout);
 	}
