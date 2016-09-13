@@ -6,6 +6,9 @@ Bundle-Version: 1.0.0
 Bundle-Activator: law.and.orders.platform.activator.Activator
 Bundle-Vendor: Papadakis_Aggelis
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ LNO.Object.Model;bundle-version="1.0.0",
+ Hibernate.Bundle.3.6;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
+Eclipse-RegisterBuddy: Hibernate.Bundle.3.6

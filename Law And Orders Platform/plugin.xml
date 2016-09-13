@@ -23,15 +23,9 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="View"
+            name="Main View"
             class="law.and.orders.platform.views.View"
             id="Law.And.Orders.Platform.view">
-      </view>
-      <view
-            class="law.and.orders.platform.views.SecondView"
-            id="Law And Orders Platform.view1"
-            name="SecondView"
-            restorable="true">
       </view>
    </extension>
    <extension
