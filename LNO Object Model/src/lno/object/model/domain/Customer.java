@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -32,7 +31,7 @@ public class Customer {
 	private String lastName;
 	
 	@Column(name="code", length=20, nullable=false, unique = true)
-	@Pattern(regexp="(^[A-Z]N[0-9]{6,6}$)",message="{invalid.Code}")
+//	@Pattern(regexp="(^[A-Z]N[0-9]{6,6}$)",message="{invalid.Code}")
 	private String code;
 	
 	@Column(name="email", length=200, nullable=true)
