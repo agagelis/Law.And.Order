@@ -6,10 +6,10 @@ Bundle-Version: 1.0.0
 Bundle-Activator: lno.object.model.Activator
 Bundle-Vendor: Papadakis_Aggelis
 Require-Bundle: org.eclipse.core.runtime,
- Hibernate.Bundle.3.6;bundle-version="1.0.0"
+ Hibernate.Bundle;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Eclipse-RegisterBuddy: Hibernate.Bundle.3.6
+Eclipse-RegisterBuddy: Hibernate.Bundle
 Export-Package: law.and.orders.platform.dbaccess,
  lno.object.model,
  lno.object.model.domain
