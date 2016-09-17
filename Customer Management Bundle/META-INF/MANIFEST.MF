@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0
 Bundle-Activator: customer.management.bundle.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- Law.And.Orders.Platform;bundle-version="1.0.0"
+ Law.And.Orders.Platform;bundle-version="1.0.0",
+ LNO.Object.Model;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
