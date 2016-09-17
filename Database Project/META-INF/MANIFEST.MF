@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Database Project
+Bundle-SymbolicName: Database.Project
+Bundle-Version: 1.0.0
+Bundle-Activator: database.project.Activator
+Bundle-Vendor: Aggelis Papadakis
+Require-Bundle: org.eclipse.core.runtime,
+ LNO.Object.Model;bundle-version="1.0.0",
+ Hibernate.Bundle;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
