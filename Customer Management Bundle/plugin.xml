@@ -72,5 +72,35 @@
             name="Customer Management">
       </perspective>
    </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="customer.management.bundle.handlers.CreateCustomerHandler"
+            commandId="customer.management.commands.createcustomer">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="customer.management.commands.customer.management"
+            id="customer.management.commands.createcustomer"
+            name="Δημιουργία Πελάτη">
+      </command>
+      <category
+            id="customer.management.commands.customer.management"
+            name="Διαχείριση Πελατών">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:customer.management.bundle.views.CustomersView">
+         <command
+               commandId="customer.management.commands.createcustomer"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>
