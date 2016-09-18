@@ -8,39 +8,33 @@ import javax.persistence.Persistence;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import org.hibernate.query.Query;
 import law.and.orders.platform.dbaccess.JPAUtil;
-import lno.object.model.domain.Customer;
+
 
 public class CustomerManagementDB<T> {
 
 	//private T t;
 	private Class<T> entityClass;
 	private static Transaction tx;
+	private Session em;
 	
-	static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
+	//static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
 
 	//CRUD Generic Functions for Customers
 	public T saveGeneric(T t) {
-		Session em = JPAUtil.getSessionFactory().getCurrentSession();
-		if(em.getTransaction().isActive()){
-			tx = em.getTransaction();
-		}
-		else {
-			tx = em.beginTransaction();
-		}
-		
+		startOperation();
         try{
         		em.save(t);
         		tx.commit();
-        		em.close();
         		return em.find(entityClass, t);
         } 
         catch (Exception ex) {
         	tx.rollback();
         	ex.printStackTrace();
-        	em.close();
         	return null;
+        }finally{        	
+        	em.close();
         }
 		
 //		EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -53,47 +47,60 @@ public class CustomerManagementDB<T> {
 	}
 	
 	public T updadteGeneric(T t){
-		Session em = JPAUtil.getSessionFactory().getCurrentSession();
+		startOperation();
+        try{
+        		em.update(t);
+        		tx.commit();
+        		return em.find(entityClass, t);
+        } 
+        catch (Exception ex) {
+        	tx.rollback();
+        	ex.printStackTrace();
+        	return null;
+        }finally{        	
+        	em.close();
+        }
+	}
+	
+	public void deleteGeneric(T t)
+	{
+		startOperation();
+		try{
+        	em.delete(t);
+        	tx.commit();
+        } 
+        catch (Exception ex) {
+        	tx.rollback();
+        	ex.printStackTrace();
+        }finally{        	
+        	em.close();
+        }
+	}
+
+	public List<T> selectAllGeneric()
+	{
+		startOperation();
+		try{
+			Query query = em.createQuery("from " + entityClass.getName());
+			List<T> genericList =query.getResultList();   
+			tx.commit();
+		    return genericList;
+		} 
+        catch (Exception ex) {
+        	ex.printStackTrace();
+        	return null;
+        }finally{        	
+        	em.close();
+        }
+	}
+	
+	private void startOperation() {
+		em = JPAUtil.getSessionFactory().getCurrentSession();
 		if(em.getTransaction().isActive()){
 			tx = em.getTransaction();
 		}
 		else {
 			tx = em.beginTransaction();
 		}
-		
-        try{
-        		em.update(t);
-        		tx.commit();
-        		em.close();
-        		return em.find(entityClass, t);
-        } 
-        catch (Exception ex) {
-        	tx.rollback();
-        	ex.printStackTrace();
-        	em.close();
-        	return null;
-        }
-	}
-	
-	public void deleteGeneric(T t)
-	{
-		Session s = JPAUtil.getSessionFactory().getCurrentSession();
-		if(s.getTransaction().isActive()){
-			tx = s.getTransaction();
-		}
-		else {
-			tx = s.beginTransaction();
-		}
-		
-		try{
-        	s.delete(t);
-        	tx.commit();
-        	s.close();
-        } 
-        catch (Exception ex) {
-        	tx.rollback();
-        	ex.printStackTrace();
-        	s.close();
-        }
-	}
+    }
 }
