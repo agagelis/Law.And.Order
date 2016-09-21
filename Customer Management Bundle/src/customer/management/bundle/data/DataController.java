@@ -27,4 +27,11 @@ public class DataController {
 		}
 	}
 
+	public void updateCustomer(Customer customer){
+		DAO.updateCustomer(customer);
+	}
+	
+	public void deleteCustomer(Customer customer){
+		DAO.deleteCustomer(customer);
+	}
 }

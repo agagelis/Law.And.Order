@@ -9,25 +9,32 @@ import javax.persistence.Persistence;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
+
 import law.and.orders.platform.dbaccess.JPAUtil;
 
 
-public class CustomerManagementDB<T> {
+public class CustomerManagementDB {
 
-	//private T t;
-	private Class<T> entityClass;
 	private static Transaction tx;
-	private Session em;
+	private static Session em;
 	
-	//static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
+//	private static CustomerManagementDB<?> instance = null;
+//	public static CustomerManagementDB<?> getInstance(){
+//		if(instance == null){
+//			instance = new CustomerManagementDB();
+//		}
+//		return (CustomerManagementDB<?>) instance;
+//	}
+//	static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
 
 	//CRUD Generic Functions for Customers
-	public T saveGeneric(T t) {
+	public static <T> T saveGeneric(T t) {
 		startOperation();
         try{
         		em.save(t);
         		tx.commit();
-        		return em.find(entityClass, t);
+        		return (T) em.find(t.getClass(), t);
         } 
         catch (Exception ex) {
         	tx.rollback();
@@ -46,12 +53,12 @@ public class CustomerManagementDB<T> {
 //		return find;
 	}
 	
-	public T updadteGeneric(T t){
+	public static <T> T updateGeneric(T t){
 		startOperation();
         try{
         		em.update(t);
         		tx.commit();
-        		return em.find(entityClass, t);
+        		return (T) em.find(t.getClass(), t);
         } 
         catch (Exception ex) {
         	tx.rollback();
@@ -62,7 +69,7 @@ public class CustomerManagementDB<T> {
         }
 	}
 	
-	public void deleteGeneric(T t)
+	public static <T> void deleteGeneric(T t)
 	{
 		startOperation();
 		try{
@@ -77,7 +84,7 @@ public class CustomerManagementDB<T> {
         }
 	}
 
-	public List<T> selectAllGeneric()
+	public static <T> List<T> selectAllGeneric(Class<T> entityClass)
 	{
 		startOperation();
 		try{
@@ -94,7 +101,7 @@ public class CustomerManagementDB<T> {
         }
 	}
 	
-	private void startOperation() {
+	private static void startOperation() {
 		em = JPAUtil.getSessionFactory().getCurrentSession();
 		if(em.getTransaction().isActive()){
 			tx = em.getTransaction();
