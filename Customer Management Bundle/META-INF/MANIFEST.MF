@@ -8,6 +8,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  Law.And.Orders.Platform;bundle-version="1.0.0",
  LNO.Object.Model;bundle-version="1.0.0",
+ Common.UI.Bundle;bundle-version="1.0.0",
+ org.eclipse.nebula.widgets.xviewer;bundle-version="0.9.9",
+ org.eclipse.nebula.widgets.xviewer.example;bundle-version="0.9.9",
  Database.Project;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

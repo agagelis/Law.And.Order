@@ -23,6 +23,11 @@
             id="customer.management.bundle.views.CustomerInformationView"
             name="Customer Information">
       </view>
+      <view
+            class="customer.management.bundle.views.TestXViewer"
+            id="customer.management.bundle.views.TestXViewer"
+            name="Test XViewer">
+      </view>
    </extension>
    <extension
          point="org.eclipse.help.contexts">

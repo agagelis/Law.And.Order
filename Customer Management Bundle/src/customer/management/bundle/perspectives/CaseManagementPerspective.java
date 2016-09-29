@@ -3,10 +3,12 @@ package customer.management.bundle.perspectives;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
+import common.ui.bundle.ui.constants.UIConstantsPerspectiveIDs;
+
 public class CaseManagementPerspective implements IPerspectiveFactory {
 
-	public static final String PERSPECTIVE_ID = "customer.management.bundle.perspectives.casemanagement"; //$NON-NLS-1$
-	
+	public static final String PERSPECTIVE_ID = UIConstantsPerspectiveIDs.CustomerManagementCasesPerspective; //$NON-NLS-1$
+
 	/**
 	 * Creates the initial layout for a page.
 	 */
