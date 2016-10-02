@@ -1,6 +1,8 @@
 package lno.object.model.domain;
 
+import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,61 +16,64 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cases")
-public class Case {
+@Table(name = "cases")
+public class Case implements Serializable {
+
+	private static final long serialVersionUID = 991742476227738244L;
 
 	@Id
-    @Column(name="id")
-	@SequenceGenerator(name = "pk_sequence", sequenceName = "entity_sequence",allocationSize=1, initialValue=100)
-	@GeneratedValue(strategy = GenerationType.AUTO, generator="pk_sequence")
+	@Column(name = "id")
+	@SequenceGenerator(name = "pk_sequence", sequenceName = "entity_sequence", allocationSize = 1, initialValue = 100)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "pk_sequence")
 	private int id;
 
-	@Column(name="title", nullable=false)
+	@Column(name = "title", nullable = false)
 	private String title;
-	
-	@Column(name="categoryA")
+
+	@Column(name = "categoryA")
 	private String categoryA;
-	
-	@ManyToOne(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name="customerno", nullable=false)
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn(name = "customerno", nullable = false)
 	private Customer customer;
-	
-	@Column(name="courtDate")
+
+	@Column(name = "courtDate")
 	private Date courtDate;
-	
-	@Column(name="categoryB")
+
+	@Column(name = "categoryB")
 	private String categoryB;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String description;
-	
-	@Column(name="courtType")
+
+	@Column(name = "courtType")
 	private String courtType;
-	
-	@Column(name="insertionDate", nullable=false)
+
+	@Column(name = "insertionDate", nullable = false)
 	private Date insertionDate;
-	
-	@Column(name="issueDate")
+
+	@Column(name = "issueDate")
 	private Date issueDate;
-	
-	@Column(name="filingDate")
+
+	@Column(name = "filingDate")
 	private Date filingDate;
-	
-	@Column(name="postponements")
+
+	@Column(name = "postponements")
 	private int postponements;
 
-	@Column(name="creator", nullable=false)
+	@Column(name = "creator", nullable = false)
 	private String creator;
-	
-	@Column(name="status")
+
+	@Column(name = "status")
 	private String status;
 
-	public Case(){
-		
+	public Case() {
+
 	}
-	
-	public Case(String title, String category, Customer cust, Date date, String categoryb, String court, Date idate, String creator, Date issueDate, Date fillDate, String descr, int post, String status){
-		
+
+	public Case(String title, String category, Customer cust, Date date, String categoryb, String court, Date idate, String creator,
+			Date issueDate, Date fillDate, String descr, int post, String status) {
+
 		this.title = title;
 		this.categoryA = category;
 		this.setCustomer(cust);
@@ -83,16 +88,15 @@ public class Case {
 		this.postponements = post;
 		this.status = status;
 	}
-	
+
 	public static Case newCaseInstance(Case c) {
-	    Case temp = new Case(c.getTitle(), c.getCategoryA(), c.getCustomer(),
-	    c.getCourtDate(), c.getCategoryB(),c.getCourtType(),c.getInsertionDate(),
-	    c.getCreator(),c.getIssueDate(),c.getFilingDate(), c.getDescription(), 
-	    c.getPostponements(),c.getStatus());
-	    temp.setId(c.getId());
-	    return temp;
+		Case temp = new Case(c.getTitle(), c.getCategoryA(), c.getCustomer(), c.getCourtDate(), c.getCategoryB(), c.getCourtType(),
+				c.getInsertionDate(), c.getCreator(), c.getIssueDate(), c.getFilingDate(), c.getDescription(), c.getPostponements(),
+				c.getStatus());
+		temp.setId(c.getId());
+		return temp;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -122,11 +126,11 @@ public class Case {
 	}
 
 	public void setCustomer(Customer customer) {
-		if(this.customer != null){
+		if (this.customer != null) {
 			this.customer.friendCases().remove(this);
 		}
 		this.customer = customer;
-		if(this.customer != null){
+		if (this.customer != null) {
 			this.customer.friendCases().add(this);
 		}
 	}
@@ -162,8 +166,7 @@ public class Case {
 	public void setCourtType(String courtType) {
 		this.courtType = courtType;
 	}
-	
-	
+
 	public Date getInsertionDate() {
 		return insertionDate;
 	}

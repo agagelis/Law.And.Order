@@ -1,5 +1,6 @@
 package lno.object.model.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +21,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "customers")
-public class Customer {
+public class Customer implements Serializable {
+
+	private static final long serialVersionUID = 4246251323907529381L;
 
 	@Id
 	@Column(name = "id")

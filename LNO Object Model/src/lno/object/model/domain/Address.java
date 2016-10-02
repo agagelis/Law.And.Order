@@ -1,31 +1,36 @@
 package lno.object.model.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Address {
+public class Address implements Serializable {
 
-	@Column(name="addressStreet", length=50, nullable=false)
+	private static final long serialVersionUID = 6856472584074568383L;
+
+	@Column(name = "addressStreet", length = 50, nullable = false)
 	private String addressStreet;
 
-	@Column(name="addressNumber", length=10)
+	@Column(name = "addressNumber", length = 10)
 	private String addressNumber;
-	
-	@Column(name="region", length=50)
+
+	@Column(name = "region", length = 50)
 	private String region;
 
-	@Column(name="addressZipCode", length=10)
+	@Column(name = "addressZipCode", length = 10)
 	private String addressZipCode;
 
-	@Column(name="city", length=20, nullable=false)
+	@Column(name = "city", length = 20, nullable = false)
 	private String city;
-	
-	@Column(name="country", length=20, nullable=false)
+
+	@Column(name = "country", length = 20, nullable = false)
 	private String country;
 
-	public Address(){}
-	
+	public Address() {
+	}
+
 	public Address(String addstreet, String addnumber, String region, String zipcode, String city, String country) {
 		this.addressStreet = addstreet;
 		this.addressNumber = addnumber;
@@ -58,7 +63,7 @@ public class Address {
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	
+
 	public String getAddressZipCode() {
 		return addressZipCode;
 	}
@@ -66,7 +71,7 @@ public class Address {
 	public void setAddressZipCode(String addressZipCode) {
 		this.addressZipCode = addressZipCode;
 	}
-		
+
 	public String getCountry() {
 		return country;
 	}
@@ -83,40 +88,34 @@ public class Address {
 		this.city = city;
 	}
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Address)) {
-            return false;
-        }
+	@Override
+	public boolean equals(Object other) {
+		if (other == null) {
+			return false;
+		}
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof Address)) {
+			return false;
+		}
 
-        Address theAddress = (Address) other;
-        if (!(addressStreet == null ? theAddress.addressStreet 
-                == null : addressStreet.equals(theAddress.addressStreet))) {
-            return false;
-        }
-        if (!(addressNumber == null ? theAddress.addressNumber 
-                == null : addressNumber.equals(theAddress.addressNumber))) {
-            return false;
-        }
-        if (!(city == null ? theAddress.city 
-                == null : city.equals(theAddress.city))) {
-            return false;
-        }
-        if (!(addressZipCode == null ? theAddress.addressZipCode
-                == null : addressZipCode.equals(theAddress.addressZipCode))) {
-            return false;
-        }
-        if (!(country == null ? theAddress.country
-                == null : country.equals(theAddress.country))) {
-            return false;
-        }
-        return true;
-    } 
+		Address theAddress = (Address) other;
+		if (!(addressStreet == null ? theAddress.addressStreet == null : addressStreet.equals(theAddress.addressStreet))) {
+			return false;
+		}
+		if (!(addressNumber == null ? theAddress.addressNumber == null : addressNumber.equals(theAddress.addressNumber))) {
+			return false;
+		}
+		if (!(city == null ? theAddress.city == null : city.equals(theAddress.city))) {
+			return false;
+		}
+		if (!(addressZipCode == null ? theAddress.addressZipCode == null : addressZipCode.equals(theAddress.addressZipCode))) {
+			return false;
+		}
+		if (!(country == null ? theAddress.country == null : country.equals(theAddress.country))) {
+			return false;
+		}
+		return true;
+	}
 }
-

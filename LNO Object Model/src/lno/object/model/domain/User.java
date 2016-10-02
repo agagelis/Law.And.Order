@@ -1,81 +1,91 @@
 package lno.object.model.domain;
-import javax.persistence.*;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
+public class User implements Serializable {
 
-public class User {
-	
+	private static final long serialVersionUID = 1823276478511915599L;
+
 	@Id
-    @Column(name="id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 
-	@Column(name="firstName", length=200, nullable=false)
+	@Column(name = "firstName", length = 200, nullable = false)
 	private String firstName;
 
-	@Column(name="lastName", length=200, nullable=false)
+	@Column(name = "lastName", length = 200, nullable = false)
 	private String lastName;
-	
-	@Column(name="username", length=200, nullable=false)
+
+	@Column(name = "username", length = 200, nullable = false)
 	private String username;
 
-	@Column(name="password", length=20, nullable=false)
+	@Column(name = "password", length = 20, nullable = false)
 	private String password;
-	
+
 	@Enumerated(EnumType.STRING)
-	@Column(name="userright", nullable=false)
+	@Column(name = "userright", nullable = false)
 	private Permission userright;
-	
-	public User(){
-		
+
+	public User() {
+
 	}
-	
+
 	public User(String fname, String lname, String uname, String pass, Permission uright) {
-		this.firstName=fname;
-		this.lastName=lname;
-		this.username=uname;
-		this.password=pass;
-		this.userright=uright;
+		this.firstName = fname;
+		this.lastName = lname;
+		this.username = uname;
+		this.password = pass;
+		this.userright = uright;
 	}
-	
 
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
-	
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}
-	
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -92,4 +102,3 @@ public class User {
 		}
 	}
 }
-
