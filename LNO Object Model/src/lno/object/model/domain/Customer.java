@@ -30,30 +30,30 @@ public class Customer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "firstName", length = 200, nullable = false)
+	@Column(name = "firstName", length = 200)
 	private String firstName;
 
-	@Column(name = "lastName", length = 200, nullable = false)
+	@Column(name = "lastName", length = 200)
 	private String lastName;
 
-	@Column(name = "code", length = 20, nullable = false, unique = true)
+	@Column(name = "code", length = 20, unique = true)
 	// @Pattern(regexp="(^[A-Z]N[0-9]{6,6}$)",message="{invalid.Code}")
 	private String code;
 
-	@Column(name = "email", length = 200, nullable = true)
+	@Column(name = "email", length = 200)
 	private String email;
 
 	@ElementCollection
 	@CollectionTable(name = "phones")
 	private List<String> telephones = new ArrayList<String>();
 
-	@Column(name = "telephone1", nullable = true)
+	@Column(name = "telephone1")
 	private String telephone1;
 
-	@Column(name = "telephone2", nullable = true)
+	@Column(name = "telephone2")
 	private String telephone2;
 
-	@Column(name = "occupation", nullable = true)
+	@Column(name = "occupation")
 	private String occupation;
 
 	@Embedded

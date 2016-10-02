@@ -22,20 +22,20 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 
-	@Column(name = "firstName", length = 200, nullable = false)
+	@Column(name = "firstName", length = 200 )
 	private String firstName;
 
-	@Column(name = "lastName", length = 200, nullable = false)
+	@Column(name = "lastName", length = 200 )
 	private String lastName;
 
-	@Column(name = "username", length = 200, nullable = false)
+	@Column(name = "username", length = 200 )
 	private String username;
 
-	@Column(name = "password", length = 20, nullable = false)
+	@Column(name = "password", length = 20 )
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "userright", nullable = false)
+	@Column(name = "userright" )
 	private Permission userright;
 
 	public User() {

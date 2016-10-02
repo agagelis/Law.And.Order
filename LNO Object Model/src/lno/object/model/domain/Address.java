@@ -10,7 +10,7 @@ public class Address implements Serializable {
 
 	private static final long serialVersionUID = 6856472584074568383L;
 
-	@Column(name = "addressStreet", length = 50, nullable = false)
+	@Column(name = "addressStreet", length = 50)
 	private String addressStreet;
 
 	@Column(name = "addressNumber", length = 10)
@@ -22,10 +22,10 @@ public class Address implements Serializable {
 	@Column(name = "addressZipCode", length = 10)
 	private String addressZipCode;
 
-	@Column(name = "city", length = 20, nullable = false)
+	@Column(name = "city", length = 20)
 	private String city;
 
-	@Column(name = "country", length = 20, nullable = false)
+	@Column(name = "country", length = 20)
 	private String country;
 
 	public Address() {

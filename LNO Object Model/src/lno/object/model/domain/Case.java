@@ -27,14 +27,14 @@ public class Case implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "pk_sequence")
 	private int id;
 
-	@Column(name = "title", nullable = false)
+	@Column(name = "title")
 	private String title;
 
 	@Column(name = "categoryA")
 	private String categoryA;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name = "customerno", nullable = false)
+	@JoinColumn(name = "customerno")
 	private Customer customer;
 
 	@Column(name = "courtDate")
@@ -49,7 +49,7 @@ public class Case implements Serializable {
 	@Column(name = "courtType")
 	private String courtType;
 
-	@Column(name = "insertionDate", nullable = false)
+	@Column(name = "insertionDate")
 	private Date insertionDate;
 
 	@Column(name = "issueDate")
@@ -61,7 +61,7 @@ public class Case implements Serializable {
 	@Column(name = "postponements")
 	private int postponements;
 
-	@Column(name = "creator", nullable = false)
+	@Column(name = "creator")
 	private String creator;
 
 	@Column(name = "status")

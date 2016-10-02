@@ -20,10 +20,10 @@ public class DataLaw implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 
-	@Column(name = "code", length = 200, nullable = false)
+	@Column(name = "code", length = 200)
 	private String code;
 
-	@Column(name = "categoryA", length = 200, nullable = false)
+	@Column(name = "categoryA", length = 200)
 	private String categoryA;
 
 	@Column(name = "categoryB", length = 200)
