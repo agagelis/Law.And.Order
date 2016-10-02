@@ -3,6 +3,7 @@ package customer.management.bundle.views;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.layout.TableColumnLayout;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -15,6 +16,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.part.ViewPart;
 
 import common.ui.bundle.ui.constants.UIConstantsViewIDs;
+import customer.management.bundle.data.DataController;
 
 public class CustomersView extends ViewPart {
 
@@ -54,6 +56,7 @@ public class CustomersView extends ViewPart {
 		table = tableViewer.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
+		tableViewer.setContentProvider(new ArrayContentProvider());
 
 		tableViewerColumnDummy = new TableViewerColumn(tableViewer, SWT.NONE);
 		tblclmnDummy = tableViewerColumnDummy.getColumn();
@@ -79,6 +82,7 @@ public class CustomersView extends ViewPart {
 		createActions();
 		initializeToolBar();
 		initializeMenu();
+		refresh();
 	}
 
 	/**
@@ -105,6 +109,10 @@ public class CustomersView extends ViewPart {
 	@Override
 	public void setFocus() {
 		// Set the focus
+	}
+
+	public void refresh() {
+		tableViewer.setInput(DataController.getDataController().getCustomers().toArray());
 	}
 
 }
