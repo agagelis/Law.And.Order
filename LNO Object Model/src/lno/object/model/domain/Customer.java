@@ -1,10 +1,14 @@
 package lno.object.model.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,71 +18,78 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="customers")
+@Table(name = "customers")
 public class Customer {
 
 	@Id
-    @Column(name="id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@Column(name="firstName", length=200, nullable=false)
+
+	@Column(name = "firstName", length = 200, nullable = false)
 	private String firstName;
 
-	@Column(name="lastName", length=200, nullable=false)
+	@Column(name = "lastName", length = 200, nullable = false)
 	private String lastName;
-	
-	@Column(name="code", length=20, nullable=false, unique = true)
-//	@Pattern(regexp="(^[A-Z]N[0-9]{6,6}$)",message="{invalid.Code}")
+
+	@Column(name = "code", length = 20, nullable = false, unique = true)
+	// @Pattern(regexp="(^[A-Z]N[0-9]{6,6}$)",message="{invalid.Code}")
 	private String code;
-	
-	@Column(name="email", length=200, nullable=true)
+
+	@Column(name = "email", length = 200, nullable = true)
 	private String email;
-	
-	@Column(name="telephone1", nullable=true)
+
+	@ElementCollection
+	@CollectionTable(name = "phones")
+	private List<String> telephones = new ArrayList<String>();
+
+	@Column(name = "telephone1", nullable = true)
 	private String telephone1;
-	
-	@Column(name="telephone2", nullable=true)
+
+	@Column(name = "telephone2", nullable = true)
 	private String telephone2;
-	
-	@Column(name="occupation", nullable=true)
+
+	@Column(name = "occupation", nullable = true)
 	private String occupation;
-	
+
 	@Embedded
-	private Address address=new Address();
-	
-	@Column(name="afm", unique = true)
+	private Address address = new Address();
+
+	@Column(name = "afm", unique = true)
 	private String afm;
-	
-	@OneToMany(orphanRemoval=true, cascade=CascadeType.ALL, mappedBy="customer", fetch=FetchType.EAGER)
+
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "customer", fetch = FetchType.EAGER)
 	private Set<Case> cases = new HashSet<Case>();
 
 	public Set<Case> getCases() {
 		return new HashSet<Case>(this.cases);
 	}
-	
-	Set<Case> friendCases(){
+
+	Set<Case> friendCases() {
 		return this.cases;
 	}
-	
+
 	public void setCases(Set<Case> cases) {
 		this.cases = cases;
 	}
-	
-	public void addCase(Case c){
-		if(c != null){ c.setCustomer(this); }
-	}
-	
-	public void removeCase(Case c){
-		if(c != null){ c.setCustomer(null); }
+
+	public void addCase(Case c) {
+		if (c != null) {
+			c.setCustomer(this);
+		}
 	}
 
-	public Customer(){
-		
+	public void removeCase(Case c) {
+		if (c != null) {
+			c.setCustomer(null);
+		}
 	}
-	
+
+	public Customer() {
+
+	}
+
 	public Customer(String fname, String lname, String code, String email, String tel1, String tel2, String job, Address address, String afm) {
 		this.firstName = fname;
 		this.lastName = lname;
@@ -90,14 +101,14 @@ public class Customer {
 		this.address = address;
 		this.afm = afm;
 	}
-	
+
 	public static Customer newCustomerInstance(Customer customer) {
-	    Customer temp = new Customer(customer.getFirstName(), customer.getLastName(), customer.getCode(),
-	    		customer.getEmail(), customer.getTelephone1(),customer.getTelephone2(),customer.getOccupation(),customer.getAddress(),customer.getAfm());
-	    temp.setId(customer.getId());
-	    return temp;
+		Customer temp = new Customer(customer.getFirstName(), customer.getLastName(), customer.getCode(), customer.getEmail(),
+				customer.getTelephone1(), customer.getTelephone2(), customer.getOccupation(), customer.getAddress(), customer.getAfm());
+		temp.setId(customer.getId());
+		return temp;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -157,25 +168,41 @@ public class Customer {
 	public Address getAddress() {
 		return address;
 	}
-	
+
 	public void setAddress(Address address) {
-		this.address = address == null ? null : new Address(address.getAddressStreet(), address.getAddressNumber(), address.getRegion(), address.getAddressZipCode(), address.getCity(), address.getCountry());
+		this.address = address == null ? null : new Address(address.getAddressStreet(), address.getAddressNumber(), address.getRegion(),
+				address.getAddressZipCode(), address.getCity(), address.getCountry());
 	}
 
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
 	public String getAfm() {
 		return afm;
 	}
 
 	public void setAfm(String afm) {
 		this.afm = afm;
+	}
+
+	public List<String> getTelephones() {
+		return telephones;
+	}
+
+	public void setTelephones(List<String> telephones) {
+		this.telephones = telephones;
+	}
+
+	public void addTelepnone(String phone) {
+		telephones.add(phone);
+	}
+
+	public void deletePhone(String phone) {
+		telephones.remove(phone);
 	}
 }
