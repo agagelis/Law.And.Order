@@ -54,6 +54,7 @@ public class CustomerInfoPage extends WizardPage {
 		setDescription("Wizard Page description");
 	}
 
+
 	/**
 	 * Create contents of the wizard.
 	 * 
@@ -152,7 +153,7 @@ public class CustomerInfoPage extends WizardPage {
 		btnDeleteTelephone.setImage(imgDelete);
 	}
 
-	private void saveDataToModel() {
+	public void saveDataToModel() {
 		CreateCustomerWizard wizard = (CreateCustomerWizard) getWizard();
 		Customer customer = wizard.getModel();
 		customer.setFirstName(txtName.getText());

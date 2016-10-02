@@ -13,6 +13,7 @@ public class CreateCustomerWizard extends Wizard {
 
 	public CreateCustomerWizard() {
 		setWindowTitle("New Wizard");
+		model = new Customer();
 	}
 
 	@Override
@@ -24,6 +25,7 @@ public class CreateCustomerWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 		if (customerInfo.isPageComplete()) {
+			customerInfo.saveDataToModel();
 			DataController.getDataController().saveCustomer(model);
 			return true;
 		} else
