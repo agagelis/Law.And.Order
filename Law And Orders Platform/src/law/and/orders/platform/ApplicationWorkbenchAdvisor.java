@@ -6,15 +6,15 @@ import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
-	private static final String PERSPECTIVE_ID = "law.and.orders.platform.perspectives.FileManagementPerspective";
+	private static final String INITIAL_PERSPECTIVE_ID = "customer.management.bundle.perspectives.customermanagement";
 
-	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
-			IWorkbenchWindowConfigurer configurer) {
+	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
 		return new ApplicationWorkbenchWindowAdvisor(configurer);
 	}
 
 	public String getInitialWindowPerspectiveId() {
-		return PERSPECTIVE_ID;
-	}
 
+
+		return INITIAL_PERSPECTIVE_ID;
+	}
 }

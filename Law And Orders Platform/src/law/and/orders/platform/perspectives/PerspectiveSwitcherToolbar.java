@@ -53,7 +53,7 @@ private static final String KEY_PERSPECTIVE_DESCR = "k_p_descr";
 				result = descriptor.getId();
 			}
 		}
-		return result;
+		return result; 
 	}
 	
 	public PerspectiveSwitcherToolbar() {
