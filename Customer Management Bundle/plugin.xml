@@ -83,6 +83,10 @@
             class="customer.management.bundle.handlers.CreateCustomerHandler"
             commandId="customer.management.commands.createcustomer">
       </handler>
+      <handler
+            class="customer.management.bundle.handlers.CreateCaseHandler"
+            commandId="customer.management.commands.createcase">
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -96,7 +100,7 @@
             name="Διαχείριση Πελατών">
       </category>
       <command
-            id="customer.management.commands.createcustomer"
+            id="customer.management.commands.createcase"
             name="Δημιουργία Νέας Υπόθεσης">
       </command>
    </extension>
@@ -107,6 +111,14 @@
             locationURI="toolbar:customer.management.bundle.views.CustomersView">
          <command
                commandId="customer.management.commands.createcustomer"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:customer.management.bundle.views.CasesView">
+         <command
+               commandId="customer.management.commands.createcase"
                style="push">
          </command>
       </menuContribution>
