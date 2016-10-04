@@ -95,6 +95,10 @@
             id="customer.management.commands.customer.management"
             name="Διαχείριση Πελατών">
       </category>
+      <command
+            id="customer.management.commands.createcustomer"
+            name="Δημιουργία Νέας Υπόθεσης">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
