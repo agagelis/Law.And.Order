@@ -8,7 +8,6 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -20,7 +19,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.part.ViewPart;
 
+import common.ui.bundle.jface.RowNumberLabelProvider;
 import common.ui.bundle.ui.constants.UIConstantsViewIDs;
+
 import customer.management.bundle.data.DataController;
 import customer.management.bundle.views.customers.tables.columnlabelproviders.DummyColumnLabelProvider;
 import customer.management.bundle.views.customers.tables.columnlabelproviders.FirstNameColumnLabelProvider;
@@ -76,7 +77,7 @@ public class CustomersView extends ViewPart {
 		tableColumn = tableViewerColumn.getColumn();
 		tcl_composite.setColumnData(tableColumn, new ColumnWeightData(20, 5, true));
 		tableColumn.setText("#");
-		tableViewerColumn.setLabelProvider(new DummyColumnLabelProvider());
+		tableViewerColumn.setLabelProvider(new RowNumberLabelProvider());
 
 		tableViewerColumnLastName = new TableViewerColumn(tableViewer, SWT.NONE);
 		tblclmnLastName = tableViewerColumnLastName.getColumn();
