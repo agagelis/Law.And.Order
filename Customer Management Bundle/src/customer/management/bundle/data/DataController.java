@@ -26,12 +26,13 @@ public class DataController {
 	}
 
 	public void saveCustomer(Customer customer) {
-		DAO.saveCustomer(customer);
+//		DAO.saveCustomer(customer);
 		if (customers.contains(customer)) {
 			customers.set(customers.indexOf(customer), customer);
 		} else {
 			customers.add(customer);
 		}
+		updateCustomersView();
 	}
 
 	public void updateCustomer(Customer customer){

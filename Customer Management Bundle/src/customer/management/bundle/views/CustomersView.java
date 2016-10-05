@@ -1,9 +1,14 @@
 package customer.management.bundle.views;
 
+import java.util.List;
+
+import lno.object.model.domain.Customer;
+
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -17,6 +22,9 @@ import org.eclipse.ui.part.ViewPart;
 
 import common.ui.bundle.ui.constants.UIConstantsViewIDs;
 import customer.management.bundle.data.DataController;
+import customer.management.bundle.views.customers.tables.columnlabelproviders.DummyColumnLabelProvider;
+import customer.management.bundle.views.customers.tables.columnlabelproviders.FirstNameColumnLabelProvider;
+import customer.management.bundle.views.customers.tables.columnlabelproviders.LastNameColumnLabelProvider;
 
 public class CustomersView extends ViewPart {
 
@@ -29,8 +37,8 @@ public class CustomersView extends ViewPart {
 	private TableColumn tblclmnDummy;
 	private TableViewerColumn tableViewerColumnDummy;
 	private TableColumn tableColumn;
-	private TableViewerColumn tableViewerColumn_1;
-	private TableViewerColumn tableViewerColumn_2;
+	private TableViewerColumn tableViewerColumnLastName;
+	private TableViewerColumn tableViewerColumnFirstName;
 	private Composite composite;
 	private TableColumnLayout tcl_composite;
 
@@ -61,23 +69,26 @@ public class CustomersView extends ViewPart {
 		tableViewerColumnDummy = new TableViewerColumn(tableViewer, SWT.NONE);
 		tblclmnDummy = tableViewerColumnDummy.getColumn();
 		tcl_composite.setColumnData(tblclmnDummy, new ColumnWeightData(0, 0, false));
-
+		tableViewerColumnDummy.setLabelProvider(new DummyColumnLabelProvider());
 		tblclmnDummy.setText("Dummy");
 
 		TableViewerColumn tableViewerColumn = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableColumn = tableViewerColumn.getColumn();
 		tcl_composite.setColumnData(tableColumn, new ColumnWeightData(20, 5, true));
 		tableColumn.setText("#");
+		tableViewerColumn.setLabelProvider(new DummyColumnLabelProvider());
 
-		tableViewerColumn_1 = new TableViewerColumn(tableViewer, SWT.NONE);
-		tblclmnLastName = tableViewerColumn_1.getColumn();
+		tableViewerColumnLastName = new TableViewerColumn(tableViewer, SWT.NONE);
+		tblclmnLastName = tableViewerColumnLastName.getColumn();
 		tcl_composite.setColumnData(tblclmnLastName, new ColumnWeightData(150, 40, true));
 		tblclmnLastName.setText("Last Name");
+		tableViewerColumnLastName.setLabelProvider(new FirstNameColumnLabelProvider());
 
-		tableViewerColumn_2 = new TableViewerColumn(tableViewer, SWT.NONE);
-		tblclmnFirstName = tableViewerColumn_2.getColumn();
+		tableViewerColumnFirstName = new TableViewerColumn(tableViewer, SWT.NONE);
+		tblclmnFirstName = tableViewerColumnFirstName.getColumn();
 		tcl_composite.setColumnData(tblclmnFirstName, new ColumnWeightData(150, 40, true));
 		tblclmnFirstName.setText("First Name");
+		tableViewerColumnFirstName.setLabelProvider(new LastNameColumnLabelProvider());
 
 		createActions();
 		initializeToolBar();
@@ -112,7 +123,9 @@ public class CustomersView extends ViewPart {
 	}
 
 	public void refresh() {
-		tableViewer.setInput(DataController.getDataController().getCustomers().toArray());
+		List<Customer> customers = DataController.getDataController().getCustomers();
+		if (customers != null)
+			tableViewer.setInput(customers.toArray());
 	}
 
 }
