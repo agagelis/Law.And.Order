@@ -1,15 +1,9 @@
 package database.project.customer.management;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
 
 import law.and.orders.platform.dbaccess.JPAUtil;
 
@@ -19,38 +13,35 @@ public class CustomerManagementDB {
 	private static Transaction tx;
 	private static Session em;
 	
-//	private static CustomerManagementDB<?> instance = null;
-//	public static CustomerManagementDB<?> getInstance(){
-//		if(instance == null){
-//			instance = new CustomerManagementDB();
-//		}
-//		return (CustomerManagementDB<?>) instance;
-//	}
-//	static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
+//	private T t;
+//
+//  public void set(T t) { this.t = t; }
+//  public T get() { return t; }
 
-	//CRUD Generic Functions for Customers
-	public static <T> T saveGeneric(T t) {
+	private static void startOperation() {
+		em = JPAUtil.getSessionFactory().getCurrentSession();
+		if(em.getTransaction().isActive()){
+			tx = em.getTransaction();
+		}
+		else {
+			tx = em.beginTransaction();
+		}
+    }
+	//CRUD Generic Functions
+	public static <T> T saveOrUpdateGeneric(T t) {
 		startOperation();
         try{
-        		em.save(t);
+        		em.saveOrUpdate(t);
         		tx.commit();
-        		return (T) em.find(t.getClass(), t);
+        		return t;
         } 
         catch (Exception ex) {
-        	tx.rollback();
         	ex.printStackTrace();
+        	tx.rollback();
         	return null;
         }finally{        	
         	em.close();
         }
-		
-//		EntityManager entityManager = entityManagerFactory.createEntityManager();
-//		entityManager.getTransaction().begin();
-//		entityManager.persist(customer);
-//		entityManager.getTransaction().commit();
-//		Customer find = entityManager.find(Customer.class, customer.getId());
-//		entityManager.close();
-//		return find;
 	}
 	
 	public static <T> T updateGeneric(T t){
@@ -58,11 +49,11 @@ public class CustomerManagementDB {
         try{
         		em.update(t);
         		tx.commit();
-        		return (T) em.find(t.getClass(), t);
+        		return t;
         } 
         catch (Exception ex) {
-        	tx.rollback();
         	ex.printStackTrace();
+        	tx.rollback();
         	return null;
         }finally{        	
         	em.close();
@@ -77,18 +68,26 @@ public class CustomerManagementDB {
         	tx.commit();
         } 
         catch (Exception ex) {
-        	tx.rollback();
         	ex.printStackTrace();
+        	tx.rollback();
         }finally{        	
         	em.close();
         }
 	}
 
-	public static <T> List<T> selectAllGeneric(Class<T> entityClass)
+	@SuppressWarnings("unchecked")
+	public static <T> T findByIdGeneric(int id, Class<T> t) {
+		startOperation();
+		T find = (T) em.find(t.getClass() , id);
+        return find;
+    }
+	
+	@SuppressWarnings("unchecked")
+	public static <T> List<T> findAllGeneric(Class<T> entityClass)
 	{
 		startOperation();
 		try{
-			Query query = em.createQuery("from " + entityClass.getName());
+			Query<T> query = em.createQuery("from " + entityClass.getName());
 			List<T> genericList =query.getResultList();   
 			tx.commit();
 		    return genericList;
@@ -100,14 +99,4 @@ public class CustomerManagementDB {
         	em.close();
         }
 	}
-	
-	private static void startOperation() {
-		em = JPAUtil.getSessionFactory().getCurrentSession();
-		if(em.getTransaction().isActive()){
-			tx = em.getTransaction();
-		}
-		else {
-			tx = em.beginTransaction();
-		}
-    }
 }

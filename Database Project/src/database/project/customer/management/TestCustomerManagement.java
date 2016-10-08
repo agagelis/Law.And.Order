@@ -13,7 +13,7 @@ public class TestCustomerManagement {
 		c1.setOccupation("MHX");
 		
 		
-		CustomerManagementDB.saveGeneric(c1);
+		CustomerManagementDB.saveOrUpdateGeneric(c1);
 		System.out.println(c1.getId());
 	}
 

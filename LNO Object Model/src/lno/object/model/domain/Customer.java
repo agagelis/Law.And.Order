@@ -59,7 +59,7 @@ public class Customer implements Serializable {
 	@Embedded
 	private Address address = new Address();
 
-	@Column(name = "afm", unique = true)
+	@Column(name = "afm")
 	private String afm;
 
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "customer", fetch = FetchType.EAGER)
