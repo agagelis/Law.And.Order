@@ -8,7 +8,7 @@ public class EarlyStartup implements IStartup {
 
 	@Override
 	public void earlyStartup() {
-		JPAUtil.getSessionFactory();
+//		JPAUtil.getSessionFactory();
 	}
 
 }

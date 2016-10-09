@@ -23,7 +23,7 @@ public class Initialize {
 	public static void prepareData() {
 		try { 
 			//Delete all previous data
-			eraseData();
+//			eraseData();
 			
 			//Insert Docs
 		} 
