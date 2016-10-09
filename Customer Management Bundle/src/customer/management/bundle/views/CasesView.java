@@ -1,5 +1,10 @@
 package customer.management.bundle.views;
 
+import java.util.List;
+
+import lno.object.model.domain.Case;
+import lno.object.model.domain.Customer;
+
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
@@ -17,11 +22,14 @@ import org.eclipse.jface.viewers.ColumnPixelData;
 import org.eclipse.jface.viewers.ColumnWeightData;
 
 import common.ui.bundle.jface.RowNumberLabelProvider;
+import common.ui.bundle.ui.constants.UIConstantsViewIDs;
+import customer.management.bundle.data.DataController;
 
 public class CasesView extends ViewPart {
 
-	public static final String ID = "customer.management.bundle.views.CasesView"; //$NON-NLS-1$
+	public static final String ID = UIConstantsViewIDs.CustomerManagementCustomerCasesView; //$NON-NLS-1$
 	private Table table;
+	private TableViewer tableViewer;
 
 	public CasesView() {
 	}
@@ -36,7 +44,7 @@ public class CasesView extends ViewPart {
 		TableColumnLayout tcl_composite = new TableColumnLayout();
 		composite.setLayout(tcl_composite);
 		
-		TableViewer tableViewer = new TableViewer(composite, SWT.BORDER | SWT.FULL_SELECTION);
+		tableViewer = new TableViewer(composite, SWT.BORDER | SWT.FULL_SELECTION);
 		table = tableViewer.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
@@ -81,6 +89,13 @@ public class CasesView extends ViewPart {
 
 	@Override
 	public void setFocus() {
+		
+	}
+
+	public void refresh() {
+		List<Case> cases = DataController.getDataController().getCases();
+		if (cases != null)
+			tableViewer.setInput(cases.toArray());
 		
 	}
 }

@@ -1,5 +1,6 @@
 package customer.management.bundle.wizard.create.cases;
 
+import lno.object.model.domain.Case;
 import lno.object.model.domain.Customer;
 
 import org.eclipse.jface.wizard.Wizard;
@@ -9,11 +10,11 @@ import customer.management.bundle.data.DataController;
 public class CreateCaseWizard extends Wizard {
 
 	CaseInfoPage caseInfo;
-	Customer model;
+	Case model;
 
 	public CreateCaseWizard() {
 		setWindowTitle("New Wizard");
-		model = new Customer();
+		model = new Case();
 	}
 
 	@Override
@@ -26,13 +27,13 @@ public class CreateCaseWizard extends Wizard {
 	public boolean performFinish() {
 		if (caseInfo.isPageComplete()) {
 			caseInfo.saveDataToModel();
-			DataController.getDataController().saveCustomer(model);
+			DataController.getDataController().saveCase(model);
 			return true;
 		} else
 			return false;
 	}
 
-	public Customer getModel() {
+	public Case getModel() {
 		return model;
 	}
 
