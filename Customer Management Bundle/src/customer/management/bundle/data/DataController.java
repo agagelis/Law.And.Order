@@ -53,7 +53,7 @@ public class DataController {
 		} else {
 			cases.add(currentCase);
 		}
-		updateCustomersView();
+		updateCasesView();
 	}
 
 	// public void updateCustomer(Customer customer){
