@@ -1,5 +1,7 @@
 package lno.object.model;
 
+import law.and.orders.platform.dbaccess.JPAUtil;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -18,6 +20,7 @@ public class Activator implements BundleActivator {
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
+		
 	}
 
 	/*

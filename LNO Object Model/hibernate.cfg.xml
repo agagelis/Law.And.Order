@@ -6,7 +6,7 @@
   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
   <property name="hibernate.connection.password">12345</property>
   <property name="hibernate.connection.url">jdbc:postgresql:dblaw</property>
-  <property name="hibernate.connection.username">eclipse</property>
+  <property name="hibernate.connection.username">postgres</property>
   <property name="hibernate.default_schema">public</property>
   <property name="format_sql">true</property>
   <property name="hbm2ddl.auto">create</property>
