@@ -12,5 +12,11 @@
             primary="true">
       </toc>
    </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="law.and.orders.platform.startup.EarlyStartup">
+      </startup>
+   </extension>
 
 </plugin>
