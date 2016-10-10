@@ -11,6 +11,9 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.nebula.widgets.xviewer.example.MyXViewer;
+import org.eclipse.nebula.widgets.xviewer.example.MyXViewerContentProvider;
+import org.eclipse.nebula.widgets.xviewer.example.MyXViewerLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -21,11 +24,15 @@ import org.eclipse.ui.part.ViewPart;
 
 import common.ui.bundle.jface.RowNumberLabelProvider;
 import common.ui.bundle.ui.constants.UIConstantsViewIDs;
-
 import customer.management.bundle.data.DataController;
 import customer.management.bundle.views.customers.tables.columnlabelproviders.DummyColumnLabelProvider;
 import customer.management.bundle.views.customers.tables.columnlabelproviders.FirstNameColumnLabelProvider;
 import customer.management.bundle.views.customers.tables.columnlabelproviders.LastNameColumnLabelProvider;
+import customer.management.bundle.views.customers.xviewer.CustomersContentProvider;
+import customer.management.bundle.views.customers.xviewer.CustomersViewerLabelProvider;
+import customer.management.bundle.views.customers.xviewer.CustomersXViewer;
+
+import org.eclipse.swt.widgets.Label;
 
 public class CustomersView extends ViewPart {
 
@@ -42,6 +49,7 @@ public class CustomersView extends ViewPart {
 	private TableViewerColumn tableViewerColumnFirstName;
 	private Composite composite;
 	private TableColumnLayout tcl_composite;
+	private Composite cmpXViewer;
 
 	public CustomersView() {
 	}
@@ -90,6 +98,14 @@ public class CustomersView extends ViewPart {
 		tcl_composite.setColumnData(tblclmnFirstName, new ColumnWeightData(150, 40, true));
 		tblclmnFirstName.setText("First Name");
 		tableViewerColumnFirstName.setLabelProvider(new LastNameColumnLabelProvider());
+
+		cmpXViewer = new Composite(container, SWT.NONE);
+		cmpXViewer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+
+		CustomersXViewer myXviewer = new CustomersXViewer(cmpXViewer, SWT.NONE);
+		myXviewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
+		myXviewer.setContentProvider(new CustomersContentProvider());
+		myXviewer.setLabelProvider(new CustomersViewerLabelProvider(myXviewer));
 
 		createActions();
 		initializeToolBar();
