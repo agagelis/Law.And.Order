@@ -7,7 +7,6 @@ import lno.object.model.domain.Customer;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.nebula.widgets.xviewer.example.model.ISomeTask;
 import org.eclipse.nebula.widgets.xviewer.example.model.SomeTask;
 
 public class CustomersContentProvider implements ITreeContentProvider {

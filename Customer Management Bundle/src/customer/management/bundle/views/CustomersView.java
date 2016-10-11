@@ -31,8 +31,10 @@ import customer.management.bundle.views.customers.tables.columnlabelproviders.La
 import customer.management.bundle.views.customers.xviewer.CustomersContentProvider;
 import customer.management.bundle.views.customers.xviewer.CustomersViewerLabelProvider;
 import customer.management.bundle.views.customers.xviewer.CustomersXViewer;
+import customer.management.bundle.views.customers.xviewer.CustomersXViewerFactory;
 
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Tree;
 
 public class CustomersView extends ViewPart {
 
@@ -100,9 +102,13 @@ public class CustomersView extends ViewPart {
 		tableViewerColumnFirstName.setLabelProvider(new LastNameColumnLabelProvider());
 
 		cmpXViewer = new Composite(container, SWT.NONE);
-		cmpXViewer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		cmpXViewer.setLayout(new GridLayout(1, false));
+		cmpXViewer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
-		CustomersXViewer myXviewer = new CustomersXViewer(cmpXViewer, SWT.NONE);
+		CustomersXViewerFactory customersXViewerFactory = new CustomersXViewerFactory();
+		CustomersXViewer myXviewer = new CustomersXViewer(cmpXViewer, SWT.NONE,customersXViewerFactory,true,true);
+		Tree tree = myXviewer.getTree();
+//		tree.setSize(500, 200);
 		myXviewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
 		myXviewer.setContentProvider(new CustomersContentProvider());
 		myXviewer.setLabelProvider(new CustomersViewerLabelProvider(myXviewer));

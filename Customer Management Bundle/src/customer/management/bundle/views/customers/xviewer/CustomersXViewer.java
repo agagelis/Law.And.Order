@@ -2,8 +2,6 @@ package customer.management.bundle.views.customers.xviewer;
 
 import org.eclipse.nebula.widgets.xviewer.IXViewerFactory;
 import org.eclipse.nebula.widgets.xviewer.XViewer;
-import org.eclipse.nebula.widgets.xviewer.example.MyXViewerFactory;
-import org.eclipse.nebula.widgets.xviewer.example.model.ISomeTask;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
@@ -16,19 +14,15 @@ public class CustomersXViewer extends XViewer {
 	}
 
 	public CustomersXViewer(Tree tree) {
-		super(tree, new MyXViewerFactory());
+		super(tree, new CustomersXViewerFactory());
 	}
 
 	public CustomersXViewer(Shell shell_1, int i) {
-		super(shell_1, i, new MyXViewerFactory());
+		super(shell_1, i, new CustomersXViewerFactory());
 	}
 
 	public CustomersXViewer(Composite parent, int i) {
-		super(parent, i, new MyXViewerFactory());
-	}
-
-	public boolean isScheduled(ISomeTask autoRunTask) {
-		return true;
+		super(parent, i, new CustomersXViewerFactory(),true,true);
 	}
 
 	/*@Override
