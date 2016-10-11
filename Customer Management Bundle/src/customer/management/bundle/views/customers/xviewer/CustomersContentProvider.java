@@ -2,12 +2,15 @@ package customer.management.bundle.views.customers.xviewer;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import lno.object.model.domain.Customer;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.nebula.widgets.xviewer.example.model.SomeTask;
+
+import customer.management.bundle.data.DataController;
 
 public class CustomersContentProvider implements ITreeContentProvider {
 
@@ -16,6 +19,8 @@ public class CustomersContentProvider implements ITreeContentProvider {
 
 	   public CustomersContentProvider() {
 	      super();
+	      List<Customer> customers = DataController.getDataController().getCustomers();
+	      rootSet.addAll(customers);
 	   }
 
 	   @Override

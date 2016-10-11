@@ -1,13 +1,13 @@
 package customer.management.bundle.views.customers.xviewer;
 
+import java.util.Arrays;
+
+import lno.object.model.domain.Customer;
+
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.nebula.widgets.xviewer.XViewer;
 import org.eclipse.nebula.widgets.xviewer.XViewerColumn;
 import org.eclipse.nebula.widgets.xviewer.XViewerLabelProvider;
-import org.eclipse.nebula.widgets.xviewer.example.MyXViewer;
 import org.eclipse.nebula.widgets.xviewer.example.MyXViewerFactory;
-import org.eclipse.nebula.widgets.xviewer.example.images.MyImageCache;
-import org.eclipse.nebula.widgets.xviewer.example.model.ISomeTask;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
@@ -26,43 +26,46 @@ public class CustomersViewerLabelProvider extends XViewerLabelProvider {
 	public String getColumnText(Object element, XViewerColumn xCol, int columnIndex) {
 		if (element instanceof String) {
 			if (columnIndex == 1) {
-				return (String) element;
+					int index = Arrays.asList(xViewerTest.getTree().getItems()).indexOf(element);
+					return("" + (index + 1));
+//				return (String) element;
 			} else {
 				return "";
 			}
 		}
-		ISomeTask task = ((ISomeTask) element);
+		Customer task = ((Customer) element);
 		if (task == null) {
 			return "";
 		}
 		
 		if (xCol.equals(MyXViewerFactory.Name_Col)) {
-			return task.getId();
+			return task.getFirstName();
 		}
 		if (xCol.equals(MyXViewerFactory.Schedule_Time)) {
-			return task.getStartTime();
+//			return task.getStartTime();
 		}
 		if (xCol.equals(MyXViewerFactory.Run_Db)) {
-			return task.getRunDb().name();
+//			return task.getRunDb().name();
 		}
 		if (xCol.equals(MyXViewerFactory.Task_Type)) {
-			return task.getTaskType().name();
+//			return task.getTaskType().name();
 		}
 		if (xCol.equals(MyXViewerFactory.Description)) {
-			return task.getDescription();
+//			return task.getDescription();
 		}
 		if (xCol.equals(MyXViewerFactory.Category)) {
-			return task.getCategory();
+//			return task.getCategory();
 		}
 		if (xCol.equals(MyXViewerFactory.Notification)) {
-			return task.getEmailAddress();
+//			return task.getEmailAddress();
 		}
 		if (xCol.equals(MyXViewerFactory.Last_Run_Date)) {
-			return task.getLastRunDateStr();
+//			return task.getLastRunDateStr();
 		}
 		if (xCol.equals(MyXViewerFactory.Completed_Col)) {
-			return String.valueOf(task.getPercentComplete());
+//			return String.valueOf(task.getPercentComplete());
 		}
+		
 		return "unhandled column";
 	}
 
@@ -105,13 +108,13 @@ public class CustomersViewerLabelProvider extends XViewerLabelProvider {
 
 	@Override
 	public int getColumnGradient(Object element, XViewerColumn xCol, int columnIndex) throws Exception {
-		if (!(element instanceof ISomeTask)) {
-			return 0;
-		}
-		ISomeTask task = ((ISomeTask) element);
-		if (xCol.equals(MyXViewerFactory.Completed_Col)) {
-			return task.getPercentComplete();
-		}
+//		if (!(element instanceof ISomeTask)) {
+//			return 0;
+//		}
+//		ISomeTask task = ((ISomeTask) element);
+//		if (xCol.equals(MyXViewerFactory.Completed_Col)) {
+//			return task.getPercentComplete();
+//		}
 		return 0;
 	}
 

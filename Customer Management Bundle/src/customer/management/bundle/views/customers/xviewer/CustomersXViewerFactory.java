@@ -9,10 +9,11 @@ import org.eclipse.swt.SWT;
 public class CustomersXViewerFactory extends XViewerFactory {
 
 	public final static String COLUMN_NAMESPACE = "xviewer.test";
+	   
+	   public static XViewerColumn Name_Col = new XViewerColumn(COLUMN_NAMESPACE + ".name", "Name", 30, SWT.LEFT, true,
+	      SortDataType.String, false, null);
 	   public static XViewerColumn Run_Col = new XViewerColumn(COLUMN_NAMESPACE + ".run", "Run", 80, SWT.LEFT, true,
-	      SortDataType.String, false, null);
-	   public static XViewerColumn Name_Col = new XViewerColumn(COLUMN_NAMESPACE + ".name", "Name", 200, SWT.LEFT, true,
-	      SortDataType.String, false, null);
+			      SortDataType.String, false, null);
 	   public static ExtendedViewerColumn Completed_Col = new ExtendedViewerColumn(COLUMN_NAMESPACE + ".complete", "Percent Complete",
 	      80, SWT.LEFT, true, SortDataType.Float, false, null);
 	   public static XViewerColumn Schedule_Time = new XViewerColumn(COLUMN_NAMESPACE + ".startTime", "Start Time", 40,
