@@ -1,38 +1,14 @@
 package calendar.bundle.views;
 
-
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.*;
-import org.eclipse.jface.viewers.*;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.jface.action.*;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.*;
-import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.part.ViewPart;
+import org.eclipse.swt.widgets.Label;
 
-
-/**
- * This sample class demonstrates how to plug-in a new
- * workbench view. The view shows data obtained from the
- * model. The sample creates a dummy model on the fly,
- * but a real implementation would connect to the model
- * available either in this or another plug-in (e.g. the workspace).
- * The view is connected to the model using a content provider.
- * <p>
- * The view uses a label provider to define how model
- * objects should be presented in the view. Each
- * view can present the same model objects using
- * different labels and icons, if needed. Alternatively,
- * a single label provider can be shared between views
- * in order to ensure that objects of the same type are
- * presented in the same way everywhere.
- * <p>
- */
+import calendar.bundle.views.helpers.DayComposite;
 
 public class CalendarView extends ViewPart {
 
@@ -40,162 +16,123 @@ public class CalendarView extends ViewPart {
 	 * The ID of the view as specified by the extension.
 	 */
 	public static final String ID = "calendar.bundle.views.CalendarView";
+	private Composite cmpMain;
+	private Composite cmpDays[];
+	private Composite compositeMonday;
+	private Composite compositeSunday;
+	private Composite compositeSaturday;
+	private Composite compositeFriday;
+	private Composite compositeThursday;
+	private Composite compositeWednesday;
+	private Composite compositeTuesday;
 
-	private TableViewer viewer;
-	private Action action1;
-	private Action action2;
-	private Action doubleClickAction;
-
-	/*
-	 * The content provider class is responsible for
-	 * providing objects to the view. It can wrap
-	 * existing objects in adapters or simply return
-	 * objects as-is. These objects may be sensitive
-	 * to the current input of the view, or ignore
-	 * it and always show the same content 
-	 * (like Task List, for example).
-	 */
-	 
-	class ViewContentProvider implements IStructuredContentProvider {
-		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
-		}
-		public void dispose() {
-		}
-		public Object[] getElements(Object parent) {
-			return new String[] { "One", "Two", "Three" };
-		}
-	}
-	class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
-		public String getColumnText(Object obj, int index) {
-			return getText(obj);
-		}
-		public Image getColumnImage(Object obj, int index) {
-			return getImage(obj);
-		}
-		public Image getImage(Object obj) {
-			return PlatformUI.getWorkbench().
-					getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
-		}
-	}
-	class NameSorter extends ViewerSorter {
-	}
-
+	private CLabel lblMonday;
+	private CLabel lblTuesday;
+	private CLabel lblWednesday;
+	private CLabel lblThursday;
+	private CLabel lblFriday;
+	private CLabel lblSaturday;
+	private CLabel lblSunday;
 	/**
 	 * The constructor.
 	 */
 	public CalendarView() {
+
 	}
 
 	/**
-	 * This is a callback that will allow us
-	 * to create the viewer and initialize it.
+	 * This is a callback that will allow us to create the viewer and initialize
+	 * it.
 	 */
 	public void createPartControl(Composite parent) {
+
+		cmpMain = new Composite(parent, SWT.NONE);
+		cmpMain.setLayout(new GridLayout(7, false));
+
+		createDaysTitle();
+		createDaysArray();
 		
-		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayout(new GridLayout(1, false));
-		viewer = new TableViewer(composite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		Table table = viewer.getTable();
-		table.setLinesVisible(true);
-		table.setHeaderVisible(true);
-		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-		viewer.setContentProvider(new ViewContentProvider());
-		viewer.setLabelProvider(new ViewLabelProvider());
-		viewer.setSorter(new NameSorter());
-		viewer.setInput(getViewSite());
-
-		// Create the help context id for the viewer's control
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "Calendar.Bundle.viewer");
-		makeActions();
-		hookContextMenu();
-		hookDoubleClickAction();
-		contributeToActionBars();
-	}
-
-	private void hookContextMenu() {
-		MenuManager menuMgr = new MenuManager("#PopupMenu");
-		menuMgr.setRemoveAllWhenShown(true);
-		menuMgr.addMenuListener(new IMenuListener() {
-			public void menuAboutToShow(IMenuManager manager) {
-				CalendarView.this.fillContextMenu(manager);
-			}
-		});
-		Menu menu = menuMgr.createContextMenu(viewer.getControl());
-		viewer.getControl().setMenu(menu);
-		getSite().registerContextMenu(menuMgr, viewer);
-	}
-
-	private void contributeToActionBars() {
-		IActionBars bars = getViewSite().getActionBars();
-		fillLocalPullDown(bars.getMenuManager());
-		fillLocalToolBar(bars.getToolBarManager());
-	}
-
-	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(action1);
-		manager.add(new Separator());
-		manager.add(action2);
-	}
-
-	private void fillContextMenu(IMenuManager manager) {
-		manager.add(action1);
-		manager.add(action2);
-		// Other plug-ins can contribute there actions here
-		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
-	}
-	
-	private void fillLocalToolBar(IToolBarManager manager) {
-		manager.add(action1);
-		manager.add(action2);
-	}
-
-	private void makeActions() {
-		action1 = new Action() {
-			public void run() {
-				showMessage("Action 1 executed");
-			}
-		};
-		action1.setText("Action 1");
-		action1.setToolTipText("Action 1 tooltip");
-		action1.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-			getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
 		
-		action2 = new Action() {
-			public void run() {
-				showMessage("Action 2 executed");
-			}
-		};
-		action2.setText("Action 2");
-		action2.setToolTipText("Action 2 tooltip");
-		action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-				getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
-		doubleClickAction = new Action() {
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection)selection).getFirstElement();
-				showMessage("Double-click detected on "+obj.toString());
-			}
-		};
+
 	}
 
-	private void hookDoubleClickAction() {
-		viewer.addDoubleClickListener(new IDoubleClickListener() {
-			public void doubleClick(DoubleClickEvent event) {
-				doubleClickAction.run();
-			}
-		});
+	private void createDaysArray() {
+		cmpDays = new Composite[42];
+		for (int i = 0; i < 42; i++) {
+			cmpDays[i] = new DayComposite(cmpMain, SWT.BORDER);
+//			cmpDays[i].setLayout(new GridLayout(1, false));
+			cmpDays[i].setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		}
 	}
-	private void showMessage(String message) {
-		MessageDialog.openInformation(
-			viewer.getControl().getShell(),
-			"Sample View",
-			message);
+
+	private void createDaysTitle() {
+		compositeMonday = new Composite(cmpMain, SWT.NONE);
+		compositeMonday.setLayout(new GridLayout(1, false));
+		compositeMonday.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		lblMonday = new CLabel(compositeMonday, SWT.NONE);
+		lblMonday.setAlignment(SWT.CENTER);
+		lblMonday.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		lblMonday.setText("Monday");
+
+		compositeTuesday = new Composite(cmpMain, SWT.NONE);
+		compositeTuesday.setLayout(new GridLayout(1, false));
+		compositeTuesday.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		lblTuesday = new CLabel(compositeTuesday, SWT.NONE);
+		lblTuesday.setAlignment(SWT.CENTER);
+		lblTuesday.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		lblTuesday.setText("Tuesday");
+
+		compositeWednesday = new Composite(cmpMain, SWT.NONE);
+		compositeWednesday.setLayout(new GridLayout(1, false));
+		compositeWednesday.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		lblWednesday = new CLabel(compositeWednesday, SWT.NONE);
+		lblWednesday.setAlignment(SWT.CENTER);
+		lblWednesday.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		lblWednesday.setText("Wednesday");
+
+		compositeThursday = new Composite(cmpMain, SWT.NONE);
+		compositeThursday.setLayout(new GridLayout(1, false));
+		compositeThursday.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		lblThursday = new CLabel(compositeThursday, SWT.NONE);
+		lblThursday.setAlignment(SWT.CENTER);
+		lblThursday.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		lblThursday.setText("Thursday");
+
+		compositeFriday = new Composite(cmpMain, SWT.NONE);
+		compositeFriday.setLayout(new GridLayout(1, false));
+		compositeFriday.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		lblFriday = new CLabel(compositeFriday, SWT.NONE);
+		lblFriday.setAlignment(SWT.CENTER);
+		lblFriday.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		lblFriday.setText("Friday");
+
+		compositeSaturday = new Composite(cmpMain, SWT.NONE);
+		compositeSaturday.setLayout(new GridLayout(1, false));
+		compositeSaturday.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		lblSaturday = new CLabel(compositeSaturday, SWT.NONE);
+		lblSaturday.setAlignment(SWT.CENTER);
+		lblSaturday.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		lblSaturday.setText("Saturday");
+
+		compositeSunday = new Composite(cmpMain, SWT.NONE);
+		compositeSunday.setLayout(new GridLayout(1, false));
+		compositeSunday.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		lblSunday = new CLabel(compositeSunday, SWT.NONE);
+		lblSunday.setAlignment(SWT.CENTER);
+		lblSunday.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		lblSunday.setText("Sunday");
 	}
 
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
 	public void setFocus() {
-		viewer.getControl().setFocus();
 	}
 }
