@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Calendar Bundle
+Bundle-SymbolicName: Calendar.Bundle;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: calendar_bundle.Activator
+Bundle-Vendor: Aggelis Papadakis
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
