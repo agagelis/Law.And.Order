@@ -5,7 +5,7 @@ import org.eclipse.ui.IPerspectiveFactory;
 
 public class CalendarPerpsective implements IPerspectiveFactory {
 
-	public static final String PERSPECTIVE_ID = "calendar.bundle.perspectivesCalendarPerpsective";
+	public static final String PERSPECTIVE_ID = "calendar.bundle.perspectives.CalendarPerpsective";
 
 	/**
 	 * Creates the initial layout for a page.
@@ -13,6 +13,7 @@ public class CalendarPerpsective implements IPerspectiveFactory {
 	public void createInitialLayout(IPageLayout layout) {
 		String editorArea = layout.getEditorArea();
 		addFastViews(layout);
+		layout.setEditorAreaVisible(false);
 		addViewShortcuts(layout);
 		addPerspectiveShortcuts(layout);
 	}

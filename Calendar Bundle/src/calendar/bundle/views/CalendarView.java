@@ -10,6 +10,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.*;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.layout.GridData;
 
 
 /**
@@ -87,7 +91,14 @@ public class CalendarView extends ViewPart {
 	 * to create the viewer and initialize it.
 	 */
 	public void createPartControl(Composite parent) {
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		
+		Composite composite = new Composite(parent, SWT.NONE);
+		composite.setLayout(new GridLayout(1, false));
+		viewer = new TableViewer(composite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		Table table = viewer.getTable();
+		table.setLinesVisible(true);
+		table.setHeaderVisible(true);
+		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setSorter(new NameSorter());

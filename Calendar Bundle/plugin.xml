@@ -19,11 +19,10 @@
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="calendar.bundle.perspectivesCalendarPerpsective">
+            targetID="calendar.bundle.perspectives.CalendarPerpsective">
          <view
-               ratio="0.5"
-               relative="org.eclipse.ui.views.ProblemView"
-               relationship="right"
+               relative="org.eclipse.ui.editorss"
+               relationship="stack"
                id="calendar.bundle.views.CalendarView">
          </view>
       </perspectiveExtension>
@@ -37,8 +36,8 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="calendar.bundle.CalendarPerpsective"
-            id="calendar.bundle.perspectivesCalendarPerpsective"
+            class="calendar.bundle.perspectives.CalendarPerpsective"
+            id="calendar.bundle.perspectives.CalendarPerpsective"
             name="Ημερολόγιο">
       </perspective>
    </extension>
