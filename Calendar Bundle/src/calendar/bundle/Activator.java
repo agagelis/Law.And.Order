@@ -1,4 +1,4 @@
-package calendar_bundle;
+package calendar.bundle;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;

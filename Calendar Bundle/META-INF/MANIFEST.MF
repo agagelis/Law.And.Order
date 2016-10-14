@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Calendar Bundle
 Bundle-SymbolicName: Calendar.Bundle;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: calendar_bundle.Activator
+Bundle-Activator: calendar.bundle.Activator
 Bundle-Vendor: Aggelis Papadakis
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime

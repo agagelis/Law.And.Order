@@ -5,26 +5,26 @@
    <extension
          point="org.eclipse.ui.views">
       <category
-            name="Sample Category"
+            name="Ημερολόγιο"
             id="Calendar.Bundle">
       </category>
       <view
-            name="Sample View"
+            name="Ημερολόγιο"
             icon="icons/sample.gif"
             category="Calendar.Bundle"
-            class="calendar.bundle.views.SampleView"
-            id="calendar.bundle.views.SampleView">
+            class="calendar.bundle.views.CalendarView"
+            id="calendar.bundle.views.CalendarView">
       </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
+            targetID="calendar.bundle.perspectivesCalendarPerpsective">
          <view
                ratio="0.5"
                relative="org.eclipse.ui.views.ProblemView"
                relationship="right"
-               id="calendar.bundle.views.SampleView">
+               id="calendar.bundle.views.CalendarView">
          </view>
       </perspectiveExtension>
    </extension>
@@ -33,6 +33,14 @@
       <contexts
             file="contexts.xml">
       </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="calendar.bundle.CalendarPerpsective"
+            id="calendar.bundle.perspectivesCalendarPerpsective"
+            name="Ημερολόγιο">
+      </perspective>
    </extension>
 
 </plugin>

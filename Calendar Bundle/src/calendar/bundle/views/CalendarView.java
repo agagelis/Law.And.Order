@@ -30,12 +30,12 @@ import org.eclipse.swt.SWT;
  * <p>
  */
 
-public class SampleView extends ViewPart {
+public class CalendarView extends ViewPart {
 
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "calendar.bundle.views.SampleView";
+	public static final String ID = "calendar.bundle.views.CalendarView";
 
 	private TableViewer viewer;
 	private Action action1;
@@ -79,7 +79,7 @@ public class SampleView extends ViewPart {
 	/**
 	 * The constructor.
 	 */
-	public SampleView() {
+	public CalendarView() {
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class SampleView extends ViewPart {
 		menuMgr.setRemoveAllWhenShown(true);
 		menuMgr.addMenuListener(new IMenuListener() {
 			public void menuAboutToShow(IMenuManager manager) {
-				SampleView.this.fillContextMenu(manager);
+				CalendarView.this.fillContextMenu(manager);
 			}
 		});
 		Menu menu = menuMgr.createContextMenu(viewer.getControl());
