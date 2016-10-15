@@ -226,8 +226,9 @@ public class CustomCalendar extends Composite implements MouseListener {
 				}
 				startday++;
 			} else {
-				days[i].setText("");
+				days[i].setText(null);
 			}
+			days[i].layout();
 		}
 
 	}
