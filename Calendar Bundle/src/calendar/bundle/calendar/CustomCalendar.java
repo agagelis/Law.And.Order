@@ -66,7 +66,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 //
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		yearUp = new Button(this, SWT.PUSH | SWT.FLAT);
-		yearUp.setText("<");
+		yearUp.setText("<<");
 		yearUp.setLayoutData(gridData);
 		yearUp.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
@@ -76,7 +76,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		monthUp = new Button(this, SWT.PUSH | SWT.FLAT);
-		monthUp.setText("<<");
+		monthUp.setText("<");
 		monthUp.setLayoutData(gridData);
 		monthUp.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
@@ -93,7 +93,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		monthNext = new Button(this, SWT.PUSH | SWT.FLAT);
-		monthNext.setText(">>");
+		monthNext.setText(">");
 		monthNext.setLayoutData(gridData);
 		monthNext.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
@@ -103,7 +103,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		yearNext = new Button(this, SWT.PUSH | SWT.FLAT);
-		yearNext.setText(">");
+		yearNext.setText(">>");
 		yearNext.setLayoutData(gridData);
 		yearNext.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {

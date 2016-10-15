@@ -15,6 +15,11 @@
             class="calendar.bundle.views.CalendarView"
             id="calendar.bundle.views.CalendarView">
       </view>
+      <view
+            class="calendar.bundle.views.DayCalendarView"
+            id="calendar.bundle.views.DayCalendarView"
+            name="Ημέρα">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">

@@ -6,7 +6,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
-import org.eclipse.swt.widgets.Label;
 
 import calendar.bundle.calendar.CustomCalendar;
 import calendar.bundle.views.helpers.DayComposite;
