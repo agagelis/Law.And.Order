@@ -16,7 +16,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+
+import calendar.bundle.views.helpers.DayComposite;
 
 public class CustomCalendar extends Composite implements MouseListener {
 
@@ -41,7 +42,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 	private Button monthNext = null;
 	private CLabel nowLabel = null;
 
-	private CLabel[] days = new CLabel[42];
+	private DayComposite[] days = new DayComposite[42];
 
 	public CustomCalendar(Composite parent, int style) {
 		super(parent, style);
@@ -153,7 +154,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 		saturday.setText("Sat");
 
 		for (int i = 0; i < 42; i++) {
-			days[i] = new CLabel(this, SWT.FLAT | SWT.CENTER);
+			days[i] = new DayComposite(this, SWT.FLAT | SWT.CENTER);
 			gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
 			days[i].setLayoutData(gridData);
 			days[i].setBackground(display.getSystemColor(SWT.COLOR_WHITE));

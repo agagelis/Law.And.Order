@@ -21,6 +21,7 @@ public class DayComposite extends Composite{
 		
 		cmpDayOfMonth = new Composite(this, SWT.BORDER);
 		GridData gd_cmpDayOfMonth = new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 1);
+		gd_cmpDayOfMonth.widthHint = 22;
 		gd_cmpDayOfMonth.heightHint = 22;
 		cmpDayOfMonth.setLayoutData(gd_cmpDayOfMonth);
 		cmpDayOfMonth.setLayout(new GridLayout(1, false));
@@ -43,5 +44,10 @@ public class DayComposite extends Composite{
 	{
 		this.day = day;
 		lblNewLabel.setText(day+"");
+	}
+
+	public void setText(String string) {
+		lblNewLabel.setText(string+"");
+		cmpDayOfMonth.layout();		
 	}
 }

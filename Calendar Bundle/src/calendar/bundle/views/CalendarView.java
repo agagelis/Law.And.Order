@@ -18,7 +18,8 @@ public class CalendarView extends ViewPart {
 	 */
 	public static final String ID = "calendar.bundle.views.CalendarView";
 	private Composite cmpMain;
-	private Composite cmpDays[];
+	
+	private DayComposite cmpDays[];
 	private Composite compositeMonday;
 	private Composite compositeSunday;
 	private Composite compositeSaturday;
@@ -60,7 +61,7 @@ public class CalendarView extends ViewPart {
 	}
 
 	private void createDaysArray() {
-		cmpDays = new Composite[42];
+		cmpDays = new DayComposite[42];
 		for (int i = 0; i < 42; i++) {
 			cmpDays[i] = new DayComposite(cmpMain, SWT.BORDER);
 //			cmpDays[i].setLayout(new GridLayout(1, false));
