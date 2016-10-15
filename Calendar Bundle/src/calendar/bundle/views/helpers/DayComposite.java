@@ -2,6 +2,7 @@ package calendar.bundle.views.helpers;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -56,6 +57,20 @@ public class DayComposite extends Composite {
 	public void setDay(int day) {
 		this.day = day;
 		lblDay.setText(day + "");
+	}
+	
+	
+	
+	@Override
+	public Color getBackground() {
+		return cmpMain.getBackground();
+	}
+
+	@Override
+	public void setBackground(Color color) {
+		cmpMain.setBackground(color);
+		cmpRight.setBackground(color);
+		cmpNotes.setBackground(color);
 	}
 
 	public void setText(String string) {

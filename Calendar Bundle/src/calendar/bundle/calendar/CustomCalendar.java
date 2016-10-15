@@ -27,6 +27,13 @@ public class CustomCalendar extends Composite implements MouseListener {
 	private String selectedDate = null; // selected date
 	private GridLayout gridLayout = null;
 	private GridData gridData = null;
+	private GridData gridData_7;
+	private GridData gridData_6;
+	private GridData gridData_5;
+	private GridData gridData_4;
+	private GridData gridData_3;
+	private GridData gridData_2;
+	private GridData gridData_1;
 
 	private CLabel sunday = null;
 	private CLabel monday = null;
@@ -105,52 +112,59 @@ public class CustomCalendar extends Composite implements MouseListener {
 		});
 
 		sunday = new CLabel(this, SWT.CENTER | SWT.SHADOW_OUT);
-		gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		gridData.widthHint = 20;
-		gridData.heightHint = 20;
-		sunday.setLayoutData(gridData);
+		gridData_1 = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
+		gridData_1.grabExcessVerticalSpace = false;
+		gridData_1.widthHint = 20;
+		gridData_1.heightHint = 20;
+		sunday.setLayoutData(gridData_1);
 		sunday.setText("Sun");
 
 		monday = new CLabel(this, SWT.CENTER | SWT.SHADOW_OUT);
-		gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		gridData.widthHint = 20;
-		gridData.heightHint = 20;
-		monday.setLayoutData(gridData);
+		gridData_2 = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
+		gridData_2.grabExcessVerticalSpace = false;
+		gridData_2.widthHint = 20;
+		gridData_2.heightHint = 20;
+		monday.setLayoutData(gridData_2);
 		monday.setText("Mon");
 
 		tuesday = new CLabel(this, SWT.CENTER | SWT.SHADOW_OUT);
-		gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		gridData.widthHint = 20;
-		gridData.heightHint = 20;
-		tuesday.setLayoutData(gridData);
+		gridData_3 = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
+		gridData_3.grabExcessVerticalSpace = false;
+		gridData_3.widthHint = 20;
+		gridData_3.heightHint = 20;
+		tuesday.setLayoutData(gridData_3);
 		tuesday.setText("Tue");
 
 		wednesday = new CLabel(this, SWT.CENTER | SWT.SHADOW_OUT);
-		gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		gridData.widthHint = 20;
-		gridData.heightHint = 20;
-		wednesday.setLayoutData(gridData);
+		gridData_4 = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
+		gridData_4.grabExcessVerticalSpace = false;
+		gridData_4.widthHint = 20;
+		gridData_4.heightHint = 20;
+		wednesday.setLayoutData(gridData_4);
 		wednesday.setText("Wed");
 
 		thursday = new CLabel(this, SWT.CENTER | SWT.SHADOW_OUT);
-		gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		gridData.widthHint = 20;
-		gridData.heightHint = 20;
-		thursday.setLayoutData(gridData);
+		gridData_5 = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
+		gridData_5.grabExcessVerticalSpace = false;
+		gridData_5.widthHint = 20;
+		gridData_5.heightHint = 20;
+		thursday.setLayoutData(gridData_5);
 		thursday.setText("Thu");
 
 		friday = new CLabel(this, SWT.CENTER | SWT.SHADOW_OUT);
-		gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		gridData.widthHint = 20;
-		gridData.heightHint = 20;
-		friday.setLayoutData(gridData);
+		gridData_6 = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
+		gridData_6.grabExcessVerticalSpace = false;
+		gridData_6.widthHint = 20;
+		gridData_6.heightHint = 20;
+		friday.setLayoutData(gridData_6);
 		friday.setText("Fri");
 
 		saturday = new CLabel(this, SWT.CENTER | SWT.SHADOW_OUT);
-		gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		gridData.widthHint = 20;
-		gridData.heightHint = 20;
-		saturday.setLayoutData(gridData);
+		gridData_7 = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
+		gridData_7.grabExcessVerticalSpace = false;
+		gridData_7.widthHint = 20;
+		gridData_7.heightHint = 20;
+		saturday.setLayoutData(gridData_7);
 		saturday.setText("Sat");
 
 		for (int i = 0; i < 42; i++) {
