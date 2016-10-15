@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.swt.widgets.Label;
 
+import calendar.bundle.calendar.CustomCalendar;
 import calendar.bundle.views.helpers.DayComposite;
 
 public class CalendarView extends ViewPart {
@@ -33,6 +34,7 @@ public class CalendarView extends ViewPart {
 	private CLabel lblFriday;
 	private CLabel lblSaturday;
 	private CLabel lblSunday;
+	private CustomCalendar customCalendar;
 	/**
 	 * The constructor.
 	 */
@@ -47,12 +49,13 @@ public class CalendarView extends ViewPart {
 	public void createPartControl(Composite parent) {
 
 		cmpMain = new Composite(parent, SWT.NONE);
-		cmpMain.setLayout(new GridLayout(7, false));
+		cmpMain.setLayout(new GridLayout(1, false));
 
-		createDaysTitle();
-		createDaysArray();
+//		createDaysTitle();
+//		createDaysArray();
 		
-		
+		customCalendar = new CustomCalendar(cmpMain, 0);
+		customCalendar.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 	}
 
