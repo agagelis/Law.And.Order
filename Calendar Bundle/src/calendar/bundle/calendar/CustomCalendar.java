@@ -18,8 +18,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
 import calendar.bundle.views.helpers.DayComposite;
+import calendar.bundle.views.helpers.DayCompositeSelectionListener;
 
-public class CustomCalendar extends Composite implements MouseListener {
+public class CustomCalendar extends Composite implements MouseListener, DayCompositeSelectionListener {
 
 	private Display display = null;
 	private Date nowDate = null; // current date
@@ -56,14 +57,14 @@ public class CustomCalendar extends Composite implements MouseListener {
 		setLayout(new GridLayout(7, false));
 
 		display = Display.getCurrent();
-//		shell = new Shell(parent, SWT.TITLE | SWT.PRIMARY_MODAL);
-//		shell.setText("Calendar ver0.02");
-//		shell.setSize(230, 220);
-//
-//		gridLayout = new GridLayout();
-//		gridLayout.numColumns = 7;
-//		shell.setLayout(gridLayout);
-//
+		// shell = new Shell(parent, SWT.TITLE | SWT.PRIMARY_MODAL);
+		// shell.setText("Calendar ver0.02");
+		// shell.setSize(230, 220);
+		//
+		// gridLayout = new GridLayout();
+		// gridLayout.numColumns = 7;
+		// shell.setLayout(gridLayout);
+		//
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		yearUp = new Button(this, SWT.PUSH | SWT.FLAT);
 		yearUp.setText("<<");
@@ -169,6 +170,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 
 		for (int i = 0; i < 42; i++) {
 			days[i] = new DayComposite(this, SWT.FLAT | SWT.CENTER);
+			days[i].addDayCompositeSelectionListener(this);
 			gridData = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
 			days[i].setLayoutData(gridData);
 			days[i].setBackground(display.getSystemColor(SWT.COLOR_WHITE));
@@ -180,7 +182,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 		nowDate = new Date(now.getTimeInMillis());
 		setDayForDisplay(now);
 
-//		return selectedDate;
+		// return selectedDate;
 	}
 
 	private int getLastDayOfMonth(int year, int month) {
@@ -267,7 +269,7 @@ public class CustomCalendar extends Composite implements MouseListener {
 		CLabel day = (CLabel) e.getSource();
 		if (!day.getText().equals("")) {
 			this.selectedDate = nowLabel.getText() + "-" + day.getText();
-//			this.shell.close();
+			// this.shell.close();
 		}
 	}
 
@@ -277,5 +279,13 @@ public class CustomCalendar extends Composite implements MouseListener {
 	public void mouseUp(MouseEvent e) {
 	}
 
-	
+	@Override
+	public void dayCompositeSelected(DayComposite dayComposite) {
+		for (DayComposite day : days) {
+			if (!day.equals(dayComposite))
+				day.setSelected(false);
+		}
+
+	}
+
 }
