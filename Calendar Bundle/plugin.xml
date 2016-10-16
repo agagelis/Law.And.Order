@@ -47,5 +47,36 @@
             name="Ημερολόγιο">
       </perspective>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="Calendar Bundle.commands.category"
+            name="Ημερολόγιο">
+      </category>
+      <command
+            categoryId="Calendar Bundle.commands.category"
+            id="Calendar Bundle.createEventCommand"
+            name="Δημιουργία συμβάντος">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="calendar.bundle.calendar.handlers.CreateEventHandler"
+            commandId="Calendar Bundle.createEventCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:calendar.bundle.views.CalendarView">
+         <command
+               commandId="Calendar Bundle.createEventCommand"
+               icon="IMG_OBJ_ADD"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>
